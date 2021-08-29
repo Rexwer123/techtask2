@@ -1,7 +1,7 @@
 'use strict'
 
 const async = require('async')
-const { response } = require('../apps')
+const { response } = require('../app')
 
 async function checkForAlertsController({ productId, retailers }, res) {
     let currentMin
