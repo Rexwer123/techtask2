@@ -1,7 +1,7 @@
 module.exports = function checkForAlertsController(req, res) {
     const { productId, retailers } = req.body
-    let productWithMinPrice = retailers[0]
-    retailers.forEach(product => {
+    let productWithMinPrice = retailers[0] // Baseline for comparsion
+    retailers.forEach(product => { // Checking every product
         if (product.isInStock === true) {
             if (product.discountPrice < productWithMinPrice.discountPrice || product.discountPrice < productWithMinPrice.retailPrice) {
                 productWithMinPrice = product
@@ -10,7 +10,8 @@ module.exports = function checkForAlertsController(req, res) {
     })
 
     let difference = productWithMinPrice.retailPrice - productWithMinPrice.discountPrice
-
+    
+    // If product has a discount price - only then check the pricedrop and generate an alerts
     if (productWithMinPrice.discountPrice) {
         if (difference >= 10) {
             return res.json({
