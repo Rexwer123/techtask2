@@ -1,38 +1,26 @@
-'use strict'
-
-const async = require('async')
-const { response } = require('../app')
-
-async function checkForAlertsController({ productId, retailers }, res) {
-    let currentMin
-
-    let minPrice = retailers[0].retailPrice
-
-    function itemHandler({ retailerId, retailPrice, discountPrice, isInStock }, callback) {
-        if (isInStock === true) {
-            if (retailPrice < minPrice && retailPrice - discountPrice >= 10) {
-                minPrice = retailPrice
-                currentMin = {
-                    alertRequired: true,
-                    newPrice: discountPrice,
-                    productId: productId,
-                    retailerId: retailerId
-                }
+module.exports = function checkForAlertsController(req, res) {
+    const { productId, retailers } = req.body
+    let productWithMinPrice = retailers[0]
+    retailers.forEach(product => {
+        if (product.isInStock === true) {
+            if (product.discountPrice < productWithMinPrice.discountPrice || product.discountPrice < productWithMinPrice.retailPrice) {
+                productWithMinPrice = product
             }
         }
-        if(currentMin === 'undefined'){
-            currentMin = {}
-        }
-        callback()
-    }
-
-    await async.each(retailers, itemHandler, function (err, result) {
-        if (err) {
-            return console.log(err)
-        } else {
-            return Promise.resolve(() => res.send(currentMinPrice))
-        }
     })
-}
 
-exports.default = checkForAlertsController
+    let difference = productWithMinPrice.retailPrice - productWithMinPrice.discountPrice
+
+    if (productWithMinPrice.discountPrice) {
+        if (difference >= 10) {
+            return res.json({
+                alertRequired: true,
+                newPrice: productWithMinPrice.discountPrice,
+                productId: productId,
+                retailerId: productWithMinPrice.retailerId
+            })
+        }
+        return res.json({})
+    }
+    return res.json(productWithMinPrice)
+}

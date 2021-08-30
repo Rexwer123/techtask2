@@ -22,4 +22,6 @@ app.use(express.json())
 // Route
 app.post('/', checkForAlertsController)
 
-module.exports = app
+app.listen(config.port, () => {
+    console.log('Server running')
+})
