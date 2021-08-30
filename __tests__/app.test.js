@@ -1,5 +1,4 @@
 const express = require("express")
-const routes = require("../routers/index.js")
 const supertest = require("supertest")
 
 const app = require('../app')
