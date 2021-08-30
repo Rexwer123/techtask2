@@ -11,7 +11,7 @@ module.exports = function checkForAlertsController(req, res) {
 
     let difference = productWithMinPrice.retailPrice - productWithMinPrice.discountPrice
     
-    // If product has a discount price - only then check the pricedrop and generate an alerts
+    // If product has a discount price - only then check the pricedrop and generate an alert
     if (productWithMinPrice.discountPrice) {
         if (difference >= 10) {
             return res.json({
