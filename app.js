@@ -9,6 +9,9 @@ const helmet = require('helmet')
 // Importing server config
 const config = require('./configs/app.config')
 
+// Controller
+const checkForAlertsController = require('./controllers/checkForAlertsController')
+
  // Initializing express server instance
 const app = express()
 
