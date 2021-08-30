@@ -37,7 +37,9 @@ jest
 
     "retailPrice": <Number>, 
 
-    "isInStock": <Boolean>
+    "isInStock": <Boolean>,
+    
+    "discountPrice": optional <Number>
 
   }]
 
