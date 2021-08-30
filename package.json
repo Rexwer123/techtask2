@@ -1,0 +1,24 @@
+{
+  "name": "techtask2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^3.2.1",
+    "aws-serverless-express": "^3.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rexwer123/techtask2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rexwer123/techtask2/issues"
+  },
+  "homepage": "https://github.com/Rexwer123/techtask2#readme"
+}
