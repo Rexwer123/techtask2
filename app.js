@@ -1,5 +1,3 @@
-// Serverless express app
-
 'use strict'
 
 // Importing dependencies
